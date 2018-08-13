@@ -18,7 +18,9 @@ In the command,`node server.js 3000 12000` the application runs on HTTP port 300
 4. Open the app on three different browsers with the following URLs:
 
 http://localhost:3000
+
 http://localhost:3002
+
 http://localhost:3004
 
 5. Click on the pictures to increment their counters. Test how the counters work with split and connected networks.
