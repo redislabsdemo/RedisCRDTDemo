@@ -1,0 +1,76 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>CRDT Demo</title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; }
+    </style>
+
+    <!-- load JQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- load Socket.io -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+    <!-- load crdtdemo.js -->
+    <script type="text/javascript" src="js/crdtdemo.js"></script>
+
+</head>
+<body>
+<div class="container">
+        <div class="row row-divided">
+            <div class="col-xs-4 column-one centered">
+              <a href="#" onClick="countClick('count1')"><img style="width: 160px; height: 240px;" src="img/dog1.jpg" alt="Dog1" style="width:100%"></a>
+            </div>
+            <div class="col-xs-4 column-two centered">
+              <a href="#" onClick="countClick('count2')"><img style="width: 160px; height: 240px;" src="img/dog2.jpg" alt="Dog2" style="width:100%"></a>
+            </div>
+        	  <div class="col-xs-4 column-three centered">
+              <a href="#" onClick="countClick('count3')"><img style="width: 160px; height: 240px;" src="img/dog3.jpg" alt="Dog3" style="width:100%"></a>
+        	  </div>
+        </div>
+        <br>
+        <br>
+        <div class="row row-divided">
+            <div class="col-xs-4 column-one centered">
+              <label id="count1" name="count1">0</label>
+            </div>
+            <div class="col-xs-4 column-two centered">
+              <label id="count2" name="count2">0</label>
+            </div>
+        	  <div class="col-xs-4 column-three centered">
+              <label id="count3" name="count3">0</label>
+        	  </div>
+        </div>
+</div>
+<script type="text/javascript">
+window.onload = function() {
+  getCount('count1');
+  getCount('count2');
+  getCount('count3');
+};
+
+$(function (){
+    var socket = io();
+
+    socket.on('count1', function(value){
+      $( "#count1").html( "<strong>" + value + "</strong>" );
+    });
+
+    socket.on('count2', function(value){
+      $( "#count2").html( "<strong>" + value + "</strong>" );
+    });
+
+    socket.on('count3', function(value){
+      $( "#count3").html( "<strong>" + value + "</strong>" );
+    });
+});
+</script>
+</body>
+</html>
