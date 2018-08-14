@@ -16,6 +16,7 @@ var redis = require('redis');
 
 var httpPort = process.argv[2] || 3000;
 var redisPort = process.argv[3] || 6379;
+process.env.location = process.argv[4] || "";
 
 // Redis client to query and publish to a channel
 var redisClient = redis.createClient({
